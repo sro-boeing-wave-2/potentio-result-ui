@@ -4,12 +4,8 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
+    browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadlessNoSandbox'],
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
-    files: [
-      'src/app/**/*.html',
-      'src/app/**/*.spec.js',
-      'src/app/**/*.js'
-    ],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
@@ -25,12 +21,17 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
     singleRun: false
   });
 };

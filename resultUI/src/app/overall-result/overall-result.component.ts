@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserResult} from '../../UserResult';
-import {ResultService} from '../result.service';
+import {ResultService} from '../../result.service';
 
 @Component({
   selector: 'app-overall-result',
