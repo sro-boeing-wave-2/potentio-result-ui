@@ -17,6 +17,9 @@ export class OverallResultComponent implements OnInit {
     this.resultService.getUserResult(1,'C').subscribe(data => {
       this._result = data.json();
     });
+    console.log('------------');
+
   }
+
 
 }

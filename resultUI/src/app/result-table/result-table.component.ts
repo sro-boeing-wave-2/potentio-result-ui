@@ -1,24 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import {UserResult,QuestionsAttempted, QuizResult} from '../../UserResult';
+import {ResultService} from '../../result.service';
+import { MatTableDataSource } from '@angular/material';
 
-export interface PeriodicElement {
-  question: string;
-  num: number;
-  actual: any;
-  ideal: any;
-}
+// export interface QuizQuestions {
+//   question: string;
+//   num: number;
+//   actual: any;
+//   ideal: any;
+// }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {num: 1, question: 'What dfcevf v.... e fe f', actual: 1.0079, ideal: 79},
-  {num: 2, question: 'Which bla bl......', actual: 4.0026, ideal: 79},
-  {num: 3, question: 'Why .....', actual: 'this', ideal: 'that'},
-  // {num: 4, question: 'Beryllium', actual: 9.0122, ideal: 79},
-  // {num: 5, question: 'Boron', actual: 10.811, ideal: 79},
-  // {num: 6, question: 'Carbon', actual: 12.0107, ideal: 79},
-  // {num: 7, question: 'Nitrogen', actual: 14.0067, ideal: 79},
-  // {num: 8, question: 'Oxygen', actual: 15.9994, ideal: 79},
-  // {num: 9, question: 'Fluorine', actual: 18.9984, ideal: 79},
-  // {num: 10, question: 'Neon', actual: 20.1797, ideal: 79},
-];
+// const ELEMENT_DATA: QuizQuestions[] = [
+//   {num: 1, question: 'cfrvr', actual: 1.0079, ideal: 79},
+//   {num: 2, question: 'Which bla bl......', actual: 4.0026, ideal: 79},
+//   {num: 3, question: 'Why .....', actual: 'this', ideal: 'that'},
+
+// ];
 
 @Component({
   selector: 'app-result-table',
@@ -27,16 +24,28 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ResultTableComponent implements OnInit {
 
+  _result : UserResult;
+  quizResult : QuizResult;
+  questionList : QuestionsAttempted[];
+  question = []
 
-  constructor() {
-
-  }
+  constructor(private resultService : ResultService) { }
 
   ngOnInit() {
+    this.resultService.getUserResult(1,'C').subscribe(data => {
+      const questionsListArray = data.json().quizResults[0].questionsAttempted
+      this.question.push(...questionsListArray);
+      //this._result = data.json();
+      console.log(this.question[0]);
+    });
 
+    // const questionsListArray = this._result.quizResults;
+    // this.quizResult = questionsListArray[0];
+    // this.questionList = this.quizResult.questionsAttempted;
   }
+
   displayedColumns: string[] = ['num', 'question', 'actual', 'ideal'];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource<QuestionsAttempted>(this.question);;
 }
 
 
