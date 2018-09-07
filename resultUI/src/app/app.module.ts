@@ -9,13 +9,18 @@ import { ResultTableComponent } from './result-table/result-table.component';
 import { OverallResultComponent } from './overall-result/overall-result.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
+import { StartComponent } from './start/start.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { ResultComponent } from './result/result.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ResultTableComponent,
-    OverallResultComponent
+    OverallResultComponent,
+    StartComponent,
+    ResultComponent
 
   ],
   imports: [
@@ -26,7 +31,8 @@ import {HttpModule} from '@angular/http';
     MatToolbarModule,
     MatTableModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

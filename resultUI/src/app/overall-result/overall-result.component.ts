@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserResult} from '../../UserResult';
+import {UserResult,QuizResult,QuestionsAttempted} from '../../UserResult';
 import {ResultService} from '../../result.service';
 
 @Component({
@@ -10,12 +10,14 @@ import {ResultService} from '../../result.service';
 export class OverallResultComponent implements OnInit {
 
   _result : UserResult;
+  _questions : QuestionsAttempted[];
 
   constructor(private resultService : ResultService) { }
 
   ngOnInit() {
     this.resultService.getUserResult(1,'C').subscribe(data => {
       this._result = data.json();
+      this._questions = this._result.quizResults[0].questionsAttempted;
     });
     console.log('------------');
 
