@@ -4,9 +4,9 @@ import { ResultComponent } from './result/result.component';
 import { StartComponent } from './start/start.component';
 
 const routes: Routes = [
-  { path: '',redirectTo: '/start',  pathMatch: 'full'},
-  {path:'start', component:StartComponent},
-  {path:'result', component:ResultComponent}
+  { path: '',redirectTo: '/start/:userId/:domain',  pathMatch: 'full'},
+  {path:'start/:userId/:domain', component:StartComponent},
+  {path:'result/:userId/:domain', component:ResultComponent}
 ];
 
 @NgModule({

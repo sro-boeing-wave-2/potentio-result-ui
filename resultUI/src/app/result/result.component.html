@@ -15,14 +15,36 @@
       </div>
     </section>
   </mat-toolbar>
-
+<!--
 <div class="table-part">
 <app-result-table></app-result-table>
 </div>
 
 <div class="result-part">
 <app-overall-result></app-overall-result>
+</div> -->
+
+<div>
+<h2>Questions</h2>
+  <tr *ngFor="let quest of question">
+    <td>{{quest.questionNumber}}</td>
+    <td>{{quest.questionText}}</td>
+    <td>{{quest.response}}</td>
+    <td>{{quest.correctAns}}</td>
+    <td>{{quest.isCorrect}}</td>
+</tr>
 </div>
+
+<div>
+<p> User Id : {{_result.userId}}</p>
+<p>Domain Name : {{_result.domainName}}</p>
+<p>Your Score: {{_result.quizResults[0].obtainedScore}}</p>
+<p>Out of Score: {{_result.quizResults[0].totalScore}}</p>
+<p>Percentage obtained: {{_result.quizResults[0].percentageScore}}</p>
+<p>Your Percentage Score of this domain : {{_result.averagePercentage}}</p>
+</div>
+
+
 
 </body>
 </html>
