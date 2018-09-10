@@ -1,0 +1,27 @@
+.question , .totalscore ,h4{
+  text-align: center;
+  margin: 15px;
+  color:brown;
+  font-family:'Times New Roman', Times, serif;
+
+}
+table{
+  width:100%;
+}
+tr,td,th
+{
+ text-align: center;
+  border:1px solid rgb(24, 39, 179);
+  font-family:'Times New Roman', Times, serif;
+  font-size: 19px;
+}
+.user_domain{
+  text-align: right;
+  margin-right: 26px;
+  margin-top: 22px;
+
+  display: block;
+
+
+}
+

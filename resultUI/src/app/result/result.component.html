@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <title>Result</title>
 </head>
 <body>
@@ -24,8 +25,21 @@
 <app-overall-result></app-overall-result>
 </div> -->
 
+<div class = user_domain>
+<h3> User Id : {{_result.userId}}</h3>
+<h3>Domain Name : {{_result.domainName}}</h3>
+
+</div>
 <div>
-<h2>Questions</h2>
+<h1 class = question >Questions</h1>
+<table >
+  <tr>
+    <th>QNo.</th>
+    <th>Question</th>
+    <th>Response</th>
+    <th>Coreect Answer</th>
+    <th>Is Correct</th>
+  </tr>
   <tr *ngFor="let quest of question">
     <td>{{quest.questionNumber}}</td>
     <td>{{quest.questionText}}</td>
@@ -33,18 +47,18 @@
     <td>{{quest.correctAns}}</td>
     <td>{{quest.isCorrect}}</td>
 </tr>
+</table>
 </div>
 
-<div>
-<p> User Id : {{_result.userId}}</p>
-<p>Domain Name : {{_result.domainName}}</p>
-<p>Your Score: {{_result.quizResults[0].obtainedScore}}</p>
-<p>Out of Score: {{_result.quizResults[0].totalScore}}</p>
-<p>Percentage obtained: {{_result.quizResults[0].percentageScore}}</p>
-<p>Your Percentage Score of this domain : {{_result.averagePercentage}}</p>
+<div class = totalscore>
+
+    <h4>Out of Score: {{_result.quizResults[0].totalScore}}</h4>
+
+    <h4>Your Percentage Score of this domain : {{_result.averagePercentage}}</h4>
 </div>
-
-
+<div class="w3-padding-44 w3-blue w3-circle w3-center circle-width">
+    <h2>Your Score: {{_result.quizResults[0].obtainedScore}}  ,  Percentage obtained: {{_result.quizResults[0].percentageScore}}</h2>
+  </div>
 
 </body>
 </html>
