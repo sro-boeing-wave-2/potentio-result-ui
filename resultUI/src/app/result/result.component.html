@@ -26,8 +26,9 @@
 </div> -->
 
 <div class = user_domain>
-<h3> User Id : {{_result.userId}}</h3>
-<h3>Domain Name : {{_result.domainName}}</h3>
+<h4> User Id : {{_result.userId}}</h4>
+<h4>Domain Name : {{_result.domainName}}</h4>
+<h4>Your Percentage Score of this domain : {{_result.averagePercentage}}</h4>
 
 </div>
 <div>
@@ -36,32 +37,48 @@
   <tr>
     <th>QNo.</th>
     <th>Question</th>
+    <th>Marks</th>
     <th>Response</th>
     <th>Correct Answer</th>
     <th>Is Correct</th>
+
   </tr>
   <tr *ngFor="let quest of question">
     <td>{{quest.questionNumber}}</td>
     <td>{{quest.questionText}}</td>
+    <td>{{quest.difficultyLevel}}</td>
     <td>{{quest.response}}</td>
     <td>{{quest.correctAns}}</td>
     <td>{{quest.isCorrect}}</td>
+
 </tr>
 </table>
 </div>
 
-<div class = totalscore>
 
-  <!-- hardcoded as of now, need to get the latest entry and for that we need to get the last element of this array -->
-  <!-- int length = _result.quizResults.Count -->
-    <h4>Out of Score: {{_result.quizResults[0].totalScore}}</h4>
-
-    <h4>Your Percentage Score of this domain : {{_result.averagePercentage}}</h4>
-</div>
 <div class="w3-padding-44 w3-blue w3-circle w3-center circle-width">
-    <h2>Your Score: {{_result.quizResults[0].obtainedScore}}/{{_result.quizResults[0].totalScore}} </h2>
-      <h2>  Percentage obtained: {{_result.quizResults[0].percentageScore}}</h2>
-  </div>
+    <!-- hardcoded as of now, need to get the latest entry and for that we need to get the last element of this array -->
+    <!-- int length = _result.quizResults.Count -->
+   <h2>Your Score: {{_result.quizResults[0].obtainedScore}}/{{_result.quizResults[0].totalScore}} </h2>
+   <h2>  Percentage obtained: {{_result.quizResults[0].percentageScore}}</h2>
+</div>
+<div>
+  <h1>Tag Wise Results</h1>
+  <table>
+    <tr>
+      <th>Tags</th>
+      <th>Marks Obtained</th>
+      <th>Total Marks</th>
+      <th>Tag Wise Percentage</th>
+    </tr>
+    <tr *ngFor="let tag of tags">
+       <td>{{tag.tagName }}</td>
+       <td>{{tag.tagCorrectAnsCount}}</td>
+       <td>{{tag.tagTotalQuestCount}}</td>
+       <td>{{tag.tagCorrectPercentage}}</td>
+    </tr>
+  </table>
+</div>
 
 </body>
 </html>

@@ -18,6 +18,8 @@ export class ResultComponent implements OnInit {
   questionList : QuestionsAttempted[];
   question = [];
   _questions : QuestionsAttempted[];
+  tags = [];
+
 
   constructor(private router : Router, private activatedRoute:ActivatedRoute, private resultService : ResultService) { }
 
@@ -35,7 +37,9 @@ export class ResultComponent implements OnInit {
       this.question.push(...questionsListArray);
       //this._result = data.json();
       console.log(this.question[0]);
-
+      // Added
+      const tagList  = this._result.quizResults[0].tagWiseResults;
+      this.tags.push(...tagList);
       this._questions = this._result.quizResults[0].questionsAttempted;
     });
   }
