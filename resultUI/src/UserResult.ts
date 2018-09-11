@@ -27,7 +27,7 @@ export class QuestionsAttempted{
 
 export class TagWiseResult{
   tagName : string;
-  tagScoreObtained : string;
-  tagScoreTotal : string;
-  tagScorePercentage : string;
+  tagCorrectAnsCount : string;
+  tagTotalQuestCount : string;
+  tagCorrectPercentage : string;
 }

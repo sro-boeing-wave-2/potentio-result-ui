@@ -10,6 +10,8 @@ export class ResultService {
 
   getUserResult(UserId,DomainName){
     return this.http.get("https://localhost:44343/api/QuizResult?userId="+UserId+"&domainName="+DomainName);
+    //return this.http.get("http://localhost/api/QuizResult?userId="+UserId+"&domainName="+DomainName);
+
   }
 
   constructor(private http : Http) { }

@@ -37,7 +37,7 @@
     <th>QNo.</th>
     <th>Question</th>
     <th>Response</th>
-    <th>Coreect Answer</th>
+    <th>Correct Answer</th>
     <th>Is Correct</th>
   </tr>
   <tr *ngFor="let quest of question">
@@ -52,12 +52,15 @@
 
 <div class = totalscore>
 
+  <!-- hardcoded as of now, need to get the latest entry and for that we need to get the last element of this array -->
+  <!-- int length = _result.quizResults.Count -->
     <h4>Out of Score: {{_result.quizResults[0].totalScore}}</h4>
 
     <h4>Your Percentage Score of this domain : {{_result.averagePercentage}}</h4>
 </div>
 <div class="w3-padding-44 w3-blue w3-circle w3-center circle-width">
-    <h2>Your Score: {{_result.quizResults[0].obtainedScore}}  ,  Percentage obtained: {{_result.quizResults[0].percentageScore}}</h2>
+    <h2>Your Score: {{_result.quizResults[0].obtainedScore}}/{{_result.quizResults[0].totalScore}} </h2>
+      <h2>  Percentage obtained: {{_result.quizResults[0].percentageScore}}</h2>
   </div>
 
 </body>
