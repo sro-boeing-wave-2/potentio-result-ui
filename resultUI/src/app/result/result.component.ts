@@ -19,7 +19,7 @@ export class ResultComponent implements OnInit {
   question = [];
   _questions : QuestionsAttempted[];
   tags = [];
-
+  length : number;
 
   constructor(private router : Router, private activatedRoute:ActivatedRoute, private resultService : ResultService) { }
 
@@ -33,14 +33,16 @@ export class ResultComponent implements OnInit {
 
     this.resultService.getUserResult(this.userId,this.domain).subscribe(data => {
       this._result = data.json();
-      const questionsListArray = this._result.quizResults[0].questionsAttempted
+      const questionsListArray = this._result.quizResults[this._result.quizResults.length-1].questionsAttempted
       this.question.push(...questionsListArray);
       //this._result = data.json();
+      console.log(this._result.quizResults.length);
+      this.length = this._result.quizResults.length-1;
       console.log(this.question[0]);
       // Added
-      const tagList  = this._result.quizResults[0].tagWiseResults;
+      const tagList  = this._result.quizResults[this.length].tagWiseResults;
       this.tags.push(...tagList);
-      this._questions = this._result.quizResults[0].questionsAttempted;
+      this._questions = this._result.quizResults[this.length].questionsAttempted;
     });
   }
 }
