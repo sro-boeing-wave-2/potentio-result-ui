@@ -14,7 +14,7 @@ export class OverallResultComponent implements OnInit {
   constructor(private resultService : ResultService) { }
 
   ngOnInit() {
-    this.resultService.getUserResult(1,'C').subscribe(data => {
+    this.resultService.getUserResult(1).subscribe(data => {
       this._result = data.json();
     });
   }

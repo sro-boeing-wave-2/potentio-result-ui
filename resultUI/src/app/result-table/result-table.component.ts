@@ -32,7 +32,7 @@ export class ResultTableComponent implements OnInit {
   constructor(private resultService : ResultService) { }
 
   ngOnInit() {
-    this.resultService.getUserResult(1,'C').subscribe(data => {
+    this.resultService.getUserResult(1).subscribe(data => {
       const questionsListArray = data.json().quizResults[0].questionsAttempted
       this.question.push(...questionsListArray);
       //this._result = data.json();

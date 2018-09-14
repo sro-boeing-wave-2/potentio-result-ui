@@ -10,8 +10,9 @@ import { UserResult, QuizResult, QuestionsAttempted } from '../../UserResult';
 })
 export class ResultComponent implements OnInit {
 
-  userId : number;
-  domain : string;
+  // userId : number;
+  // domain : string;
+  quizId : string;
 
   _result : UserResult;
   quizResult : QuizResult;
@@ -25,13 +26,16 @@ export class ResultComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params:ParamMap) => {
-      let UserId = parseInt(params.get('userId'));
-      let Domain = params.get('domain');
-      this.userId = UserId;
-      this.domain = Domain;
+      // let UserId = parseInt(params.get('userId'));
+      // let Domain = params.get('domain');
+      // this.userId = UserId;
+      // this.domain = Domain;
+      let quizId = params.get('quizId');
+      this.quizId = quizId;
+
     });
 
-    this.resultService.getUserResult(this.userId,this.domain).subscribe(data => {
+    this.resultService.getUserResult(this.quizId).subscribe(data => {
       this._result = data.json();
       const questionsListArray = this._result.quizResults[this._result.quizResults.length-1].questionsAttempted
       this.question.push(...questionsListArray);
