@@ -70,12 +70,14 @@
       <th>Correct Count</th>
       <th>Total Count</th>
       <th>Percentage</th>
+      <th>Strength</th>
     </tr>
     <tr *ngFor="let tag of tags">
        <td>{{tag.tagName }}</td>
        <td>{{tag.tagCorrectAnsCount}}</td>
        <td>{{tag.tagTotalQuestCount}}</td>
        <td>{{tag.tagCorrectPercentage}}</td>
+       <td>{{tag.tagRating}}</td>
     </tr>
   </table>
 </div>

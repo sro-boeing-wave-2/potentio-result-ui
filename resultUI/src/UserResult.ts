@@ -30,4 +30,5 @@ export class TagWiseResult{
   tagCorrectAnsCount : string;
   tagTotalQuestCount : string;
   tagCorrectPercentage : string;
+  tagRating : number;
 }
