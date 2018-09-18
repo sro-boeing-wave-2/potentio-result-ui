@@ -58,11 +58,11 @@ export class ResultComponent implements OnInit {
      const tagListFirstElement = this.firstQuizElement.tagWiseResults;
      this.tagListofFirstElement.push(...tagListFirstElement)
     //  let firstTagNames = this.tagListofFirstElement.map(res => res.tagName);
-      let firstTagPc = this.tagListofFirstElement.map(res => res.tagCorrectPercentage);
+      let firstTagPc = this.tagListofFirstElement.map(res => res.tagRating);
     //Last Quiz
       let tagNames = this.tags.map(res => res.tagName); //extract the tagNames to label the chart
      // console.log(tagNames);
-      var tagCorrectPc = this.tags.map(res => res.tagCorrectPercentage);
+      var tagCorrectPc = this.tags.map(res => res.tagRating);
       //code to start numbering from Zero in the radar chart
       var options = {
         responsive: true,
@@ -70,12 +70,13 @@ export class ResultComponent implements OnInit {
         scale: {
             ticks: {
                 beginAtZero: true,
-                max: 100
+                max: Math.max.apply(null,tagCorrectPc)
             }
         }
     };
      console.log(tagCorrectPc);
      console.log(firstTagPc);
+     console.log(Math.max.apply(null,tagCorrectPc));
      this.chart = new Chart('canvas',{
        type:'radar',
 
