@@ -78,6 +78,7 @@ export class ResultComponent implements OnInit {
      console.log(firstTagPc);
      this.chart = new Chart('canvas',{
        type:'radar',
+
        options : options,
        data: {
          labels: tagNames,
