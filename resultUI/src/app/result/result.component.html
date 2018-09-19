@@ -56,7 +56,7 @@
 </div>
 
 
-<div class="w3-padding-44 w3-blue w3-circle w3-center circle-width">
+<div class="w3-padding-44 w3-blue  w3-center circle-width">
     <!-- hardcoded as of now, need to get the latest entry and for that we need to get the last element of this array -->
     <!-- int length = _result.quizResults.Count -->
    <h2>Your Score: {{_result?.quizResults[length].obtainedScore}}/{{_result?.quizResults[length].totalScore}} </h2>
@@ -81,10 +81,17 @@
     </tr>
   </table>
 </div>
+
 <h2>Radar Chart of First and Last Quiz</h2>
+<hr />
 <div *ngIf="chart">
   <canvas id="canvas">{{ chart }}</canvas>
 </div>
+<h2>Cumulative Result</h2>
+<div *ngIf="cumulativeChart">
+  <canvas id="canva">{{ cumulativeChart }}</canvas>
+</div>
+
 
 </body>
 </html>

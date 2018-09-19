@@ -5,7 +5,8 @@ import { StartComponent } from './start/start.component';
 
 const routes: Routes = [
   { path: '',redirectTo: '/result/:quizId',  pathMatch: 'full'},
- // {path:'start/:userId/:domain', component:StartComponent},
+  //redirect to start component page
+ // {path:'start/:userId/', component:StartComponent},
   {path:'result/:quizId', component:ResultComponent}
 ];
 

@@ -3,6 +3,7 @@ export class UserResult{
   domainName : string;
   averagePercentage : number;
   quizResults : QuizResult[];
+  tagWiseCumulativeScore : CumulativeTagScore[];
 }
 
 export class QuizResult{
@@ -32,3 +33,8 @@ export class TagWiseResult{
   tagCorrectPercentage : string;
   tagRating : number;
 }
+export class CumulativeTagScore
+    {
+        tagName : string ;
+        tagRating : number ;
+    }
