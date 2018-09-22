@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ResultService } from '../../result.service';
 import { UserResult, QuizResult, QuestionsAttempted, CumulativeTagScore } from '../../UserResult';
 import { Chart } from 'chart.js';
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
+
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
@@ -29,6 +32,39 @@ export class ResultComponent implements OnInit {
   cumulativeChart = [];
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private resultService: ResultService) { }
+ //method to download the result in pdf
+ @ViewChild('content') content:ElementRef;
+ public downLoad(){
+  var data = document.getElementById('content');
+  html2canvas(data).then(canvas => {
+    // Few necessary setting options
+    var imgWidth = 208;
+    var pageHeight = 295;
+    var imgHeight = canvas.height * imgWidth / canvas.width;
+    var heightLeft = imgHeight;
+
+    const contentDataURL = canvas.toDataURL('image/png')
+    let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+    var position = 0;
+    pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+    pdf.save('MYPdf.pdf'); // Generated PDF
+  });
+
+//   let doc = new jsPDF();
+//   //let source = $('#content')[0];
+//   let specialElementHandlers = {
+//     '#editor': function(element,renderer){
+//       return true;
+//     }
+//   };
+//   let content = this.content.nativeElement;
+//   doc.fromHTML(content.innerHTML,15,15, {
+//  'width': 190,
+//  'elementHandlers': specialElementHandlers
+//   });
+
+//   doc.save('result.pdf');
+ }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -113,8 +149,7 @@ export class ResultComponent implements OnInit {
       //  //Cumulative chart
       this.cumulativeChart = new Chart('canva', {
         type: 'radar',
-
-        options: options,
+         options: options,
         data: {
           labels: cumulativeConcept,
           datasets: [
@@ -144,61 +179,3 @@ export class ResultComponent implements OnInit {
 
 
 
-//     this.resultService.getUserResult(this.quizId).subscribe(data => {
-//       this._result = data.json();
-//       const questionsListArray = this._result.quizResults[this._result.quizResults.length-1].questionsAttempted
-//       this.question.push(...questionsListArray);
-//       //this._result = data.json();
-//       console.log(this._result.quizResults.length);
-//       this.length = this._result.quizResults.length-1;
-//       this.firstQuizElement = this._result.quizResults[0];
-//       console.log(this.question[0]);
-//       // Added
-//       const tagList  = this._result.quizResults[this.length].tagWiseResults;
-//       this.tags.push(...tagList);
-//       // first Quiz
-//      const tagListFirstElement = this.firstQuizElement.tagWiseResults;
-//      this.tagListofFirstElement.push(...tagListFirstElement);
-//      //  let firstTagNames = this.tagListofFirstElement.map(res => res.tagName);
-//      let firstTagPc = this.tagListofFirstElement.map(res => res.tagCorrectPercentage);
-//       this._questions = this._result.quizResults[this.length].questionsAttempted;
-//       //Last Quiz
-//       let tagNames = this.tags.map(res => res.tagName); //extract the tagNames to label the chart
-//      // console.log(tagNames);
-//       var tagCorrectPc = this.tags.map(res => res.tagCorrectPercentage);
-//       //code to start numbering from Zero in the radar chart
-//       var options = {
-//         responsive: true,
-//         maintainAspectRatio: true,
-//         scale: {
-//             ticks: {
-//                 beginAtZero: true,
-//                 max: 100
-//             }
-//         }
-//     };
-//     this.chart = new Chart('canvas',{
-//       type:'radar',
-//       options : options,
-//       data: {
-//         labels: tagNames,
-//         datasets: [{
-//           label: "Latest Quiz Result",
-//           data: tagCorrectPc,
-//           backgroundColor :"rgba(200,0,0,0.2)"
-//         },
-//        {
-//          label: "First QUiz Result",
-//           data: firstTagPc,
-//           backgroundColor :"rgba(0,0,200,0.2)"
-//        }],
-//       fill: false
-
-
-
-//       }
-
-//     });
-//    });
-//   }
-// }
